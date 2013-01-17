@@ -21,6 +21,10 @@ public class BooleanAlgebra {
 		System.out.println(booleanAlgebra("True Or (False And True)")==true);
 		System.out.println(booleanAlgebra("(True And False) And (False And True) Or True")==true);
 		
+		System.out.println(booleanAlgebra("( (True And False) Or True )")==true);
+		
+		System.out.println(booleanAlgebra("( False Or (True And (False Or True)) Or True )")==true);
+		
 		
 		
 		
@@ -54,8 +58,10 @@ public class BooleanAlgebra {
 				s=s.substring(2);
 			}else if(s.startsWith("(")){
 				int end=s.indexOf(")");
-				b=TrueFalse(s.substring(1, end),b,op);
+				if(end>0){
+				b=TrueFalse(s.substring(1, end>-1?end:1),b,op);
 				s=s.substring(end);
+				}
 			}else{
 				s=s.substring(1);
 			}
